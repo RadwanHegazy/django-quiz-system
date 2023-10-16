@@ -1,0 +1,149 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --var-font:"Cairo",sans-serif;
+    --var-main-color:#55DBF6;
+    --var-sec-color:#E3F9FE;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    background-color: #78e3f80c;
+}
+
+
+.container {
+    width: 350px;
+    height: auto;
+    background-color: #fff;
+    box-shadow: 0px 0px 30px #55dbf63c;
+}
+
+.container .btns {
+    width: 100%;
+    height: 45px;
+    display: flex;
+}
+
+.container .btns button {
+    flex: 1;
+    font-family: var(--var-font);
+    border: none;
+    outline: none;
+    color: var(--var-main-color);
+    background-color: var(--var-sec-color);
+    cursor: pointer;
+}
+
+
+.container .btns button.active {
+    color: var(--var-main-color);
+    background-color: #fff;
+}
+
+.container .login-layer, .register-layer {
+    padding: 2rem 2.4rem;
+    width: 100%;
+    height: auto;
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.container.login .login-layer {
+    display: flex;
+    
+}
+.container.register .register-layer {
+    display: flex;
+}
+
+
+.container .profile-pic {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* height: 90px; */
+    flex-direction: column;
+    gap: 2px;
+}
+
+.container .profile-pic img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.container .profile-pic button {
+    font-family: var(--var-font);
+    background-color: var(--var-main-color);
+    color: #fff;
+    width: 50px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+
+.in {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    direction: rtl;
+    height: auto;
+}
+
+.in small {
+    font-family: var(--var-font);
+    color: var(--var-main-color);
+    font-weight: bold;
+}
+
+.in input {
+    background-color: var(--var-sec-color);
+    border: none;
+    outline: none;
+    height: 45px;
+    padding: 6px 12px;
+    font-family: var(--var-font);   
+}
+
+.container .done-btn {
+    width: 100%;
+    padding: 0 1rem;
+    height: 45px;
+    background-color: var(--var-main-color);
+    color: #fff;
+    font-family: var(--var-font);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.error-msg{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: crimson;
+    border: 2px solid crimson;
+    background-color: rgba(169, 70, 90, 0.136);
+    font-family: var(--var-font);
+}

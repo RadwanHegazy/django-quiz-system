@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> تسجيل - انشاء حساب</title>
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+</head>
+<body>
+    
+    <div class="container login">
+
+        <div class="btns">
+        
+            <button class="login-btn active" id="login">تسجيل الدخول</button>
+        
+            <button class="register-btn" id="register">انشاء حساب</button>
+        
+        </div>
+
+        {% for message in messages %}
+            <p class="error-msg">{{message}}</p>
+        {% endfor %}
+
+
+        <form class="login-layer active" action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            <div class="in">
+                <small>ألبريد الالكتروني</small>
+                <input type="email" name="email" required>
+            </div>
+
+            <div class="in">
+                <small>كلمة المرور</small>
+                <input type="password" name="password" required>
+            </div>
+
+
+            <button class="done-btn">تسجيل</button>
+        </form>
+
+        <form class="register-layer" enctype="multipart/form-data" action="{% url 'register' %}" method="POST">
+            {% csrf_token %}
+            <div class="profile-pic">
+                <input type="file" hidden id="imgFile" name="picture">
+                <img src="{% static 'images/default-user.png' %}" alt="" id="imgView">
+                <button id="imgBtn">تغير</button>
+            </div>
+
+            <div class="in">
+                <small>اسمك بالكامل</small>
+                <input type="text" name="full_name" required>
+            </div>
+
+            <div class="in">
+                <small>ألبريد الالكتروني</small>
+                <input type="email" name="email" required>
+            </div>
+
+            <div class="in">
+                <small>كلمة المرور</small>
+                <input type="password" name="password" required>
+            </div>
+
+
+            <button class="done-btn">تسجيل</button>
+
+        </form>
+
+        
+    </div>
+
+
+    <script src="{% static 'js/auth.js' %}"></script>
+    <script src="{% static 'js/change-img.js' %}"></script>
+
+
+    <script>
+        if ("{{messages.0}}"){
+            alert("{{messages.0}}")
+        }
+    </script>
+</body>
+</html>

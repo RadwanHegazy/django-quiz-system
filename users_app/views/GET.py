@@ -1,6 +1,7 @@
-from django.shortcuts import HttpResponse
+from django.shortcuts import HttpResponse, render
+
 
 
 
 def view_auth_template (request) : 
-    return HttpResponse('Home Template')
+    return render(request,'auth/auth.html')

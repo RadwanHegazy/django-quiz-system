@@ -26,7 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users_app'
+    'users_app',
+    'quiz_app'
 ]
 
 MIDDLEWARE = [
@@ -95,7 +96,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'EET'
+TIME_ZONE = 'egypt'
 
 USE_I18N = True
 
@@ -122,3 +123,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 AUTH_USER_MODEL = "users_app.User"
+
+
+LOGOUT_REDIRECT_URL = 'user_auth'
+LOGIN_URL = 'user_auth'
