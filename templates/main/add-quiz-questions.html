@@ -1,0 +1,108 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+اضافة الاسألة
+{% endblock %}
+
+{% block content %}
+
+<div class="up">
+
+    <div class="user">
+        
+        <form class="tables" method="POST">
+            {% csrf_token %}
+            <div class="table">
+                <p class="main-title">{{ quiz.title }}</p>
+                <p class="title">عنوان الاختبار</p>
+            </div>
+            
+            <div class="table">
+                <p class="main-title">{{quiz.time}}</p>
+                <p class="title">وقت الاختبار</p>
+            </div>
+
+            <div class="table">
+                <p class="main-title">{{qs_count}}</p>
+                <p class="title">عدد الاسألة</p>
+            </div>
+
+            <div class="table">
+                <button class="main-button" type="submit" value="finish" name="state">انهاء</button>
+            </div>
+
+
+
+        </form>
+
+        
+
+    </div>
+
+    
+</div>
+
+<div class="content">
+
+
+<form class="main-form" method="POST">
+
+    {% csrf_token %}
+    
+    <div class="info">  
+        <h1 class="title">اضافة سؤال</h1>
+    </div>
+
+
+    <div class="enter-data">
+
+        <div class="in big">
+            <small>رأس السؤال</small>
+            <input type="text" name="q" id="">
+        </div>
+
+        <div class="in">
+            <small>الاختيار رقم 1</small>
+            <input type="text" name="a_1" id="">
+        </div>
+
+        <div class="in">
+            <small>الاختيار رقم 2</small>
+            <input type="text" name="a_2" id="">
+        </div>
+        
+        <div class="in">
+            <small>الاختيار رقم 3</small>
+            <input type="text" name="a_3" id="">
+        </div>
+
+        <div class="in">
+            <small>الاختيار رقم 4</small>
+            <input type="text" name="a_4" id="">
+        </div>
+
+
+        <div class="in big">
+            <small>الاجابة الصحيحة</small>
+
+            <select name="correct_answer" id="">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+
+        </div>
+
+
+        <button type="submit" class="done-btn" value="add" name="state">اضافة السؤال</button>
+
+
+    </div>
+
+</form>    
+    
+
+</div>
+
+{% endblock %}

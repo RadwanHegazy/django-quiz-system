@@ -1,0 +1,55 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+اضافة اختبار
+{% endblock %}
+
+{% block content %}
+
+
+<div class="up">
+
+    <div class="user">
+        
+        <h1>{{user.full_name}}</h1>
+        <img src="{{user.picture.url}}" alt="">
+   
+    </div>
+
+    
+</div>
+
+<div class="content">
+
+
+<form method="POST" class="main-form">
+    {% csrf_token %}
+
+    
+    <div class="info">  
+        <h1 class="title">اضافة اختبار</h1>
+    </div>
+
+    <div class="enter-data">
+
+        <!-- add big if want widht = 100% -->
+        <div class="in big"> 
+            <small>عنوان الاختبار</small>
+            <input type="text" name="title" id="">
+        </div>
+
+        <div class="in big"> 
+            <small>وقت الاختبار ( اختر الوقت بالدقائق )</small>
+            <input type="number" name="time" id="">
+        </div>
+
+        <button class="done-btn" type="submit">اضافة اختبار</button>
+
+    </div>
+
+</form>    
+    
+
+</div>
+
+{% endblock %}
