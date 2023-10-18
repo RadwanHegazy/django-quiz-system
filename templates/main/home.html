@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> الرئيسية </title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+
+
+    <div class="up">
+
+        <div class="user">
+            <h1>{{ user.full_name}}</h1>
+            <img src="{{user.picture.url}}" alt="">
+        </div>
+
+    </div>
+    
+    <div class="content">
+
+        <a href="#" class="box">
+            الاختبارات
+        </a>
+        <a href="#" class="box">
+            إضافة اختبار
+        </a>
+        <a href="#" class="box">
+            نتائج 
+الاختبارات
+        </a>
+        <a href="#" class="box">
+            الطلاب
+        </a>
+        <a href="{% url 'logout' %}" class="box">
+            تسجيل خروج
+        </a>
+
+
+
+    </div>
+
+</body>
+</html>
