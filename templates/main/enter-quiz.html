@@ -1,0 +1,91 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+دخول الاختبار
+{% endblock %}
+
+{% block content %}
+
+<div class="up">
+
+    <div class="user">
+        
+        <form class="tables">
+            {% csrf_token %}
+            <div class="table">
+                <p class="main-title">{{ quiz.title }}</p>
+                <p class="title">عنوان الاختبار</p>
+            </div>
+            
+            <div class="table">
+                <p class="main-title">{{quiz.time}}</p>
+                <p class="title">وقت الاختبار</p>
+            </div>
+
+            <div class="table">
+                <p class="main-title">{{quiz.total_questions}}</p>
+                <p class="title">عدد الاسألة</p>
+            </div>
+            
+            
+            <div class="table">
+                <p class="main-title">{{quiz.user.full_name}}</p>
+                <p class="title">المشرف</p>
+            </div>
+            
+            
+
+
+
+        </form>
+
+        
+
+    </div>
+
+    
+</div>
+
+<div class="content">
+
+
+<form class="main-form" method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    
+    <div class="info">  
+        <h1 class="title">دخول الاختبار</h1>
+    </div>
+
+
+    <div class="enter-data">
+
+        <div class="profile-pic">
+            <input type="file" hidden id="imgFile" name="picture">
+            <img src="{% static 'images/default-user.png' %}" alt="" id="imgView">
+            <button type="button" id="imgBtn">تغير</button>
+        </div>
+
+        <div class="in big">
+            <small>اسمك بالكامل</small>
+            <input type="text" name="full_name" id="">
+        </div>
+
+
+        <button type="submit" class="done-btn">دخول الاختبار</button>
+
+
+    </div>
+
+</form>    
+    
+
+</div>
+
+{% endblock %}
+
+
+{% block js %}
+<script src="{% static 'js/change-img.js' %}"></script>
+{% endblock %}
