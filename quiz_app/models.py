@@ -14,6 +14,9 @@ class Quiz (models.Model):
     def __str__(self) : 
         return f"{self.title}"
 
+    def total_questions (self) : 
+        return Question.objects.filter(quiz=self).count()
+
 class Question (models.Model):
     quiz = models.ForeignKey(Quiz,on_delete=models.CASCADE)
     q = models.CharField(max_length=300)
@@ -21,6 +24,7 @@ class Question (models.Model):
     a_2 = models.CharField(max_length=300)
     a_3 = models.CharField(max_length=300)
     a_4 = models.CharField(max_length=300)
+    uuid = models.UUIDField(null=True,blank=True)
     correct_answer = models.CharField(choices=(
         ('1','1'),
         ('2','2'),
@@ -28,9 +32,41 @@ class Question (models.Model):
         ('4','4'),
     ),max_length=2)
 
+    def __str__(self) :
+        return f"{self.q}"
+
+
+class Answer (models.Model) :
+    full_name = models.CharField(max_length=100)
+    image = models.FileField(upload_to='student-images/',default='default.png')
+    date = models.DateField(auto_now_add=True)
+    quiz = models.ForeignKey(Quiz,on_delete=models.CASCADE)
+
+    def __str__(self) :
+        return f"{self.quiz}"
+
+class Student(models.Model)  :
+    full_name = models.CharField(max_length=100)
+    image = models.FileField(upload_to='student-images/',default='default.png')
+    uuid = models.UUIDField(null=True,blank=True)
+
+    def __str__(self) :
+        return f"{self.full_name}"
 
 
 @receiver(post_save,sender=Quiz)
+def CreateQuizUuid(created,instance,**kwargs) :
+    if created :
+        instance.uuid = uuid4()
+        instance.save()
+
+@receiver(post_save,sender=Question)
+def CreateQuizUuid(created,instance,**kwargs) :
+    if created :
+        instance.uuid = uuid4()
+        instance.save()
+
+@receiver(post_save,sender=Student)
 def CreateQuizUuid(created,instance,**kwargs) :
     if created :
         instance.uuid = uuid4()

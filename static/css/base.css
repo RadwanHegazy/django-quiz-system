@@ -331,3 +331,20 @@ select {
     border-radius: 30px;
 }
 
+.controls-btn {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.controls-btn button {
+    width: 100px;
+    height: 45px;
+    border: none;
+    outline: none;
+    font-family: var(--var-font);
+    background-color: #07869f;
+    color: #55DBF6;
+    cursor: pointer;
+}

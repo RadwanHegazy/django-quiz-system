@@ -1,0 +1,85 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+الاسألة
+{% endblock %}
+
+{% block content %}
+
+<div class="up">
+
+    <div class="user">
+        
+        <form class="tables">
+            {% csrf_token %}
+
+            <input type="text" hidden id="student" value="{{student_uuid}}">
+            <input type="text" hidden id="quiz_uuid" value="{{quiz.uuid}}">
+
+            <div class="table">
+                <p class="main-title">20:00</p>
+            </div>
+
+            <div class="table">
+                <button class="main-button" type="button">زرار</button>
+            </div>
+
+
+            
+
+        </form>
+
+        
+
+    </div>
+
+    
+</div>
+
+<div class="content">
+
+
+<form class="main-form" method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    
+    <div class="info">  
+        <h1 class="title">رأس السؤال</h1>
+    </div>
+
+
+    <div class="enter-data">
+
+        <div class="in big">
+            <select name="" id="">
+                <option value="#" >choice 1</option>
+                <option value="test 2">choice 2</option>
+                <option value="choice 3">choice 3</option>
+                <option value="choice 4">choice 4</option>
+            </select>
+
+        </div>
+
+        <div class="controls-btn">
+            <button type="button" id="prev">السابق</button>
+            <button type="button" id="next">التالي</button>
+        </div>
+
+
+    </div>
+
+</form>    
+    
+
+</div>
+
+{% endblock %}
+
+
+{% block js %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="{% static 'js/questions.js' %}"></script>
+
+{% endblock %}
