@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect, HttpResponse
 from django.http import HttpResponseForbidden, JsonResponse
 from django.contrib.auth.decorators import login_required
-from .models import Quiz, Question, Answer, Student
+from .models import Quiz, Question, Answer
 import ast, json
 
 @login_required
@@ -137,3 +137,30 @@ def quiz_result (request, answeruuid) :
     answer = get_object_or_404(Answer,uuid=answeruuid)
 
     return render(request,'main/result.html',{'answer':answer})
+
+
+
+@login_required
+def all_quiz (request) : 
+    
+    all_quiz = Quiz.objects.filter(user=request.user)
+
+    return render(request,'main/all-quiz.html',{'qs':all_quiz}) 
+
+
+@login_required
+def get_quiz_answers (request) : 
+    context = {}
+    quiz = Quiz.objects.all()
+
+    if 'quiz' in request.GET and request.GET['quiz']:
+        current_quiz = request.GET['quiz']
+        context['answers'] = Answer.objects.filter(quiz=Quiz.objects.get(title=current_quiz))
+        context['current_quiz'] = current_quiz
+    else:
+        answers = Answer.objects.all()
+        context['answers'] = answers
+    
+    context['quiz'] = quiz
+
+    return render(request,'main/quiz-results.html',context)

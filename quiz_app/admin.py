@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Question, Quiz, Answer, Student
+from .models import Question, Quiz, Answer
 
 
 
@@ -19,5 +19,3 @@ class AnswerBoard (admin.ModelAdmin) :
     list_display = ['full_name','quiz']
 
 admin.site.register(Answer, AnswerBoard)
-
-admin.site.register(Student)
