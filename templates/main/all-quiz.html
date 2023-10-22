@@ -1,0 +1,86 @@
+{% extends 'main/base.html' %}
+
+
+{% block title %}
+جميع الاختبارات
+{% endblock %}
+
+
+{% block content  %}
+
+
+
+<div class="up">
+
+    <div class="user">
+        <h1>{{ user.full_name}}</h1>
+        <img src="{{user.picture.url}}" alt="">
+    </div>
+
+</div>
+
+<div class="content">
+    
+
+
+                <form class="main-form">
+
+        
+                    <div class="info flex">  <!-- add flex in class if there is more than one element -->
+
+                        <h1 class="title">الاختبارات</h1>
+                        <p class="counter">{{qs.count}}</p>
+                        
+            
+                    </div>
+            
+                    <div class="enter-data">
+            
+                     
+                 
+                        {% for i in qs %}
+                        <a href="#" class="subbox">
+            
+            
+                            
+                                <div class="info-side center">
+                                    <p>{{i.title}}</p>
+                                    <p>{{i.time}} min</p>
+                                    <p>{{i.total_examed}}</p>
+                
+                                    <small class="abs date">{{i.date}}</small>
+                                    
+                                    <small class="abs url" data-url="{% url 'enter_quiz' i.uuid %}">الرابط</small>
+                
+                                </div>
+                                
+                                
+                            </a>
+                            {% endfor %}
+            
+            
+                        
+                    </div>
+            
+                </form>    
+                 
+
+                
+
+
+</div>
+
+{% block js %}
+
+<script>
+    document.querySelectorAll('.abs.url').forEach(item=>{
+        item.addEventListener('click',()=>{
+            window.location.href = item.dataset.url;
+        })
+    })
+</script>
+{% endblock %}
+
+
+
+{% endblock %}

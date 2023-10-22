@@ -1,0 +1,124 @@
+{% extends 'main/base.html' %}
+
+
+{% block title %}
+جميع الاختبارات
+{% endblock %}
+
+
+{% block content  %}
+
+
+
+<div class="up">
+
+    <div class="user">
+        <h1>{{ user.full_name}}</h1>
+        <img src="{{user.picture.url}}" alt="">
+    </div>
+
+</div>
+
+<div class="content">
+    
+
+
+            <form class="main-form" method="GET">
+
+    
+                <div class="info flex">  <!-- add flex in class if there is more than one element -->
+
+                    <h1 class="title">الاختبارات</h1>
+                    
+                    <select name="quiz" id="">
+
+                        {% if current_quiz %}
+                            <option value="" >الكل</option>
+                        {% else %}
+                            <option value="" selected>الكل </option>
+                        {% endif %}
+                        
+                        {% for i in quiz %}
+                            {% if current_quiz == i.title  %}
+                                <option value="{{i.title}}" selected>{{i.title}}</option>
+                            {% else %}
+                                <option value="{{i.title}}">{{i.title}}</option>
+                            {% endif %}
+                        {% endfor %}
+
+                    </select>
+
+        
+                </div>
+        
+                <div class="enter-data">
+
+                    {% for answer in answers %}
+                        <a href="#" class="subbox">
+            
+                            <div class="img-side">
+                                <img src="{{answer.image.url}}" alt="">
+                            </div>
+                            
+                            
+                            <div class="info-side">
+                            
+                                <div class="tables">
+            
+                                    <div class="table">
+                                        <p class="main-title">{{answer.quiz.title}}</p>
+                                        <p class="title">عنوان الاختبار</p>
+                                    </div>
+                                    
+            
+                                    <div class="table">
+                                        <p class="main-title">{{answer.full_name}}</p>
+                                        <p class="title">اسم المستخدم</p>
+                                    </div>
+
+                                    <div class="table">
+                                        <p class="main-title">{{answer.mark}}</p>
+                                        <p class="title">الدرجة</p>
+                                    </div>
+                                    
+                                    
+                    
+                                </div>
+            
+                            </div>
+                            
+            
+            
+                        </a>
+                    {% endfor %}
+        
+                    
+                </div>
+        
+        
+                    
+        
+
+
+            </form>    
+                 
+
+                
+
+
+</div>
+
+
+
+
+{% endblock %}
+
+{% block js %}
+
+<script>
+
+    document.querySelector('select').addEventListener('change',()=>{
+        document.querySelector('form').submit()
+    })
+</script>
+{% endblock %}

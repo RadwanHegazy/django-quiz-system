@@ -348,3 +348,355 @@ select {
     color: #55DBF6;
     cursor: pointer;
 }
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --var-font:"Cairo",sans-serif;
+    --var-main-color:#55DBF6;
+    --var-sec-color:#E3F9FE;
+}
+
+
+body {
+    background-color: #AFECF116;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+}
+
+.up,.content {
+    flex: 1;
+    display: flex;
+}
+
+
+.up {
+    flex: .3;
+    justify-content: center;
+    /* min-height: 200px; */
+    height: auto;
+    z-index: 10;
+}
+
+.user {
+    background-color: #fff;
+    width: 600px;
+    position: relative;
+
+    height: 100%;
+    border-bottom-right-radius: 100px;
+    border-bottom-left-radius: 100px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    box-shadow: 0px 0px 30px #99999919;
+}
+
+
+.user h1 {
+    font-family: var(--var-font);
+    color: var(--var-main-color);
+}
+
+
+.user img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+
+
+
+.table {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    font-family: var(--var-font);
+}
+
+.tables {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    flex-direction: column;
+}
+
+.table .title {
+    
+    font-weight: bold;
+    color: #ccc;
+}
+
+.table .main-title {
+    color: var(--var-main-color);
+    font-size: 20px;
+}
+
+.table .main-button {
+    width: 150px;
+    height: 45px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border: none;
+    font-family: var(--var-font);
+    color: #fff;
+    background-color: rgb(63, 230, 63);
+    box-shadow: 0px 0px 20px  rgba(63, 230, 63, 0.27);
+    cursor: pointer;
+}
+
+
+.content {
+    width: 100%;
+    margin: 5px auto;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+
+.content .main-form {
+    width: 650px;
+    height: auto;
+    padding: 2rem 3rem;
+    border-radius: 60px;
+    background-color: #fff;
+    box-shadow: 0px 0px 30px #99999919;
+}
+
+.main-form .info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-form .info .title {
+    font-family: var(--var-font);
+    color: var(--var-main-color);
+}
+
+.main-form .info.flex{
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+
+
+.main-form .info .counter {
+    font-family: var(--var-font);
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--var-main-color);
+}
+
+select {
+    width: 150px;
+    height: 60px;
+    padding: 1rem 1.3rem;
+    border: none;
+    outline: none;
+    background-color: var(--var-sec-color);
+    font-family: var(--var-font);
+    border-radius: 10px;
+}
+
+
+.in {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    direction: rtl;
+    height: auto;
+}
+
+.in small {
+    font-family: var(--var-font);
+    color: var(--var-main-color);
+    font-weight: bold;
+}
+
+.in input {
+    background-color: var(--var-sec-color);
+    border: none;
+    outline: none;
+    height: 60px;
+    padding: 6px 12px;
+    font-family: var(--var-font);   
+}
+
+.in select{
+    width: 100%;
+}
+
+.main-form .enter-data{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+.done-btn {
+    width: 300px;
+    padding: 0 1rem;
+    height: 55px;
+    border-radius: 12px;
+    background-color: var(--var-main-color);
+    color: #fff;
+    font-family: var(--var-font);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    
+    outline: none;
+}
+
+.in.big {
+    width: 100%;
+}
+
+
+.profile-pic {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* height: 90px; */
+    flex-direction: column;
+    gap: 2px;
+}
+
+.profile-pic img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.profile-pic button {
+    font-family: var(--var-font);
+    background-color: var(--var-main-color);
+    color: #fff;
+    width: 50px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+
+.subbox {
+    width: 100%;
+    border-radius: 60px;
+    padding: .5rem 1.4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;   
+    background-color: var(--var-sec-color);
+    text-decoration: none;
+    font-family: var(--var-font);
+}
+
+.subbox .img-side {
+    width: 90px;
+    height: 90px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.subbox .img-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+
+
+.subbox .info-side {
+    width: auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.subbox .info-side p{
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.subbox .info-side > p {
+    color: var(--var-main-color);
+    font-size: 15px;
+}
+
+.info-side.center {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+.info-side .abs {
+    position: absolute;
+    font-weight: bold;
+    top: 0px;
+}
+
+.info-side .abs.date {
+    right: 0;
+    color: #ccc;
+}
+
+.info-side .abs.url {
+    left: 0;
+    color: var(--var-main-color);
+    background-color: #07869f;
+    width: 100px;
+    border-radius: 30px;
+}
+
+
+.controls-btn {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.controls-btn button {
+    width: 100px;
+    height: 45px;
+    border: none;
+    outline: none;
+    font-family: var(--var-font);
+    background-color: #07869f;
+    color: #55DBF6;
+    cursor: pointer;
+}

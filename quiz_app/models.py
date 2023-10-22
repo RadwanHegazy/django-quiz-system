@@ -17,6 +17,9 @@ class Quiz (models.Model):
     def total_questions (self) : 
         return Question.objects.filter(quiz=self).count()
 
+    def total_examed (self) :
+        return Answer.objects.filter(quiz=self).count()
+    
 class Question (models.Model):
     quiz = models.ForeignKey(Quiz,on_delete=models.CASCADE)
     q = models.CharField(max_length=300)
@@ -41,17 +44,11 @@ class Answer (models.Model) :
     image = models.FileField(upload_to='student-images/',default='default.png')
     date = models.DateField(auto_now_add=True)
     quiz = models.ForeignKey(Quiz,on_delete=models.CASCADE)
-
-    def __str__(self) :
-        return f"{self.quiz}"
-
-class Student(models.Model)  :
-    full_name = models.CharField(max_length=100)
-    image = models.FileField(upload_to='student-images/',default='default.png')
+    mark = models.CharField(max_length=100,null=True,blank=True)
     uuid = models.UUIDField(null=True,blank=True)
 
     def __str__(self) :
-        return f"{self.full_name}"
+        return f"{self.quiz}"
 
 
 @receiver(post_save,sender=Quiz)
@@ -66,7 +63,7 @@ def CreateQuizUuid(created,instance,**kwargs) :
         instance.uuid = uuid4()
         instance.save()
 
-@receiver(post_save,sender=Student)
+@receiver(post_save,sender=Answer)
 def CreateQuizUuid(created,instance,**kwargs) :
     if created :
         instance.uuid = uuid4()
