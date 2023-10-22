@@ -1,0 +1,40 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+{{answer.quiz.title}}
+{% endblock %}
+
+{% block content %}
+
+<div class="content">
+
+
+<form class="main-form" method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    
+    <div class="info">  
+        <h1 class="title">نتيجتك</h1>
+    </div>
+
+
+    <div class="enter-data">
+
+        <div class="profile-pic">
+            <img src="{{answer.image.url}}" >
+            <p>{{answer.full_name}}</p>
+        </div>
+
+        <h1>{{answer.mark}}</h1>
+
+
+
+    </div>
+
+</form>    
+    
+
+</div>
+
+{% endblock %}

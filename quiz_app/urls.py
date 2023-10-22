@@ -7,4 +7,5 @@ urlpatterns = [
     path('add-quiz/questions/<str:quizuuid>/',views.add_quiz_questions,name='add_quiz_questions'),
     path('quiz/enter/<str:quizuuid>/',views.user_enter_exam,name='enter_quiz'),
     path('check/',views.save_answers,name='check'),
+    path('quiz-result/<str:answeruuid>/',views.quiz_result,name='result'),
 ]

@@ -41,6 +41,8 @@ class Answer (models.Model) :
     image = models.FileField(upload_to='student-images/',default='default.png')
     date = models.DateField(auto_now_add=True)
     quiz = models.ForeignKey(Quiz,on_delete=models.CASCADE)
+    mark = models.CharField(max_length=100,null=True,blank=True)
+    uuid = models.UUIDField(null=True,blank=True)
 
     def __str__(self) :
         return f"{self.quiz}"
@@ -66,7 +68,7 @@ def CreateQuizUuid(created,instance,**kwargs) :
         instance.uuid = uuid4()
         instance.save()
 
-@receiver(post_save,sender=Student)
+@receiver(post_save,sender=Answer)
 def CreateQuizUuid(created,instance,**kwargs) :
     if created :
         instance.uuid = uuid4()

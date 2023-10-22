@@ -76,8 +76,9 @@ def user_enter_exam (request, quizuuid) :
 
 
 
-        st = Student.objects.create(
-            full_name = full_name
+        st = Answer.objects.create(
+            full_name = full_name,
+            quiz = quiz
         )
 
         if 'picture' in request.FILES : 
@@ -104,28 +105,35 @@ def save_answers (request) :
         return HttpResponseForbidden(request)
 
     st_uuid = request.POST['student_uuid']
-    student = Student.objects.get(uuid=st_uuid)
+    answer = Answer.objects.get(uuid=st_uuid)
 
     quiz_uuid = request.POST['quiz_uuid']
     quiz = Quiz.objects.get(uuid=quiz_uuid)
 
 
-    correct_q_with_ans = [
-        {'uuid':str(i.uuid),'answer':i.correct_answer} for i in Question.objects.filter(quiz=quiz)
-    ]
     user_answers = ast.literal_eval(request.POST['answers'])
 
 
-    # compare between correct_q_with_ans and answers
-
     user_result = 0
+    total_mark = Question.objects.filter(quiz=quiz).count()
+
 
     for i in user_answers :
-        question = Question.objects.get(uuid=i['question_uuid'])
-    
-        if question.correct_answer == i['user_answer'] :
-            user_result = user_result + 1
-        
-            
+        q = Question.objects.get(uuid=i['question_uuid'])
 
-    return HttpResponse('Done')
+        if q.correct_answer == i['user_answer'] : 
+            user_result += 1
+    
+
+    answer.mark = f"{user_result} / {total_mark}"
+    answer.save()
+
+
+    done_url = redirect('result',answer.uuid)
+    return HttpResponse(done_url.url)
+
+
+def quiz_result (request, answeruuid) : 
+    answer = get_object_or_404(Answer,uuid=answeruuid)
+
+    return render(request,'main/result.html',{'answer':answer})

@@ -47,7 +47,7 @@ var prev_btn = document.getElementById('prev');
 next_btn.addEventListener('click',()=>{
 
 index++
-
+AppendToUserAnswer()
 if (index < questions.length){
     UpdateQuestionView(index)
 }else{
@@ -59,6 +59,7 @@ if (index < questions.length){
 prev_btn.addEventListener('click',()=>{
 
 index--
+AppendToUserAnswer()
 
 if (index >= 0){
     UpdateQuestionView(index)
@@ -70,28 +71,56 @@ if (index >= 0){
 
 select.addEventListener('change',()=>{
 
-user_answers.push({
-    'question_uuid' : select.id,
-    'user_answer' : select.value,
-})
-
+AppendToUserAnswer();
 
 })
 
+select.addEventListener('click',()=>{
+
+AppendToUserAnswer();
+
+})
+
+
+function AppendToUserAnswer () {
+    
+
+    user_answers.push({
+        'question_uuid' : select.id,
+        'user_answer' : select.value
+    })
+    
+    
+
+    
+}
 
 
 
 function SendData () {
 
+    var q_id = [];
+    var x = [];
+
+    user_answers.reverse().forEach( i => {
+
+        if (q_id.includes(i['question_uuid']) == false){
+            x.push(i)
+            q_id.push(i['question_uuid'])
+        };
+
+    })
 
     $.ajax({
         type:"POST",
         url:"/check/", 
         data:{
             'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
-            'answers':JSON.stringify(user_answers),
+            'answers':JSON.stringify(x),
             'student_uuid':document.getElementById('student').value,
             'quiz_uuid': document.getElementById('quiz_uuid').value
+        },success:function(done_url){
+            window.location.href = done_url;
         }
     })
 
