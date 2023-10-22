@@ -1,4 +1,5 @@
 migrations
 users-images
+student-images
 *.sqlite3
 __pycache__
